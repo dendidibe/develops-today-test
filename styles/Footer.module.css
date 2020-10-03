@@ -1,0 +1,9 @@
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  background: rgba(29, 27, 27, 0.801);
+  color: white;
+  margin-top: 30px;
+}
