@@ -8,7 +8,7 @@ export function getAllPosts(): Promise<Post> {
 }
 
 export function getEmbededPost(id: number): Promise<Post> {
-    return axios.get(`posts/${id}?_embeded=comments`);
+    return axios.get(`posts/${id}`);
 }
 
 export function postData(title: string, body: string): Promise<Post> {

@@ -33,7 +33,7 @@ const Home = ({ posts }: {
 
                 <div className={styles.container}>
                     {loading || !posts.length ? (
-                        <h1 className={styles.noPost}>Haven`&rsquo`t got posts yet...</h1>
+                        <h1 className={styles.noPost}>Haven&apos;t got posts yet...</h1>
                     ) : (
                             posts.map((post) => (
                                 <div className={styles.card} key={post.id}>
