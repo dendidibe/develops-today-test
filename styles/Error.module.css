@@ -1,0 +1,7 @@
+.errorLink {
+    color: darkblue;
+
+}
+.errorLink:hover {
+    text-decoration: underline;
+}
