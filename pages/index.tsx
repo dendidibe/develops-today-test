@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React, { ReactElement, useEffect } from "react";
 import Link from "next/link";
 import { GetServerSideProps } from 'next';
-import { Dispatch } from 'redux';
 
 import { Layout } from "../components/layout/layout";
 import { getPosts, Post } from "../store/actions/actionTypes";
@@ -16,7 +15,7 @@ const Home = ({ posts }: {
         title: string
         body: string
     }[]
-}) => {
+}): ReactElement => {
     const loading: readonly Post[] = useSelector((state: RootStateOrAny) => state.loading);
     const dispatch = useDispatch();
 
@@ -35,17 +34,17 @@ const Home = ({ posts }: {
                     {loading || !posts.length ? (
                         <h1 className={styles.noPost}>Haven&apos;t got posts yet...</h1>
                     ) : (
-                            posts.map((post) => (
-                                <div className={styles.card} key={post.id}>
-                                    <div className={styles.cardContent}>
-                                        <Link href={`/posts/[postId]`} as={`/posts/${post.id}`}>
-                                            <a className={styles.cardTitle}>{post.title}</a>
-                                        </Link>
-                                        <p className={styles.cardDescription}>{post.body}</p>
-                                    </div>
+                        posts.map((post) => (
+                            <div className={styles.card} key={post.id}>
+                                <div className={styles.cardContent}>
+                                    <Link href={`/posts/[postId]`} as={`/posts/${post.id}`}>
+                                        <a className={styles.cardTitle}>{post.title}</a>
+                                    </Link>
+                                    <p className={styles.cardDescription}>{post.body}</p>
                                 </div>
-                            ))
-                        )}
+                            </div>
+                        ))
+                    )}
                 </div>
             </div>
         </Layout>

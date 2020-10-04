@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import React, { useEffect } from "react";
+import React, { ReactElement, useEffect } from "react";
 
 import { getEmbededPost } from "../../api/index";
 import { getSinglePost } from "../../store/actions/actionTypes";
@@ -14,7 +14,7 @@ export default function Post({ singlePost }: {
         body: string
         id: number
     }
-}) {
+}): ReactElement {
     const dispatch = useDispatch();
 
     useEffect(() => {

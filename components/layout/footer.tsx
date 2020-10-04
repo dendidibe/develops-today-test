@@ -11,7 +11,7 @@ export const Footer = (): ReactElement => {
                     rel="noopener noreferrer"
                 >
                     https://github.com/dendive/develops-today-test
-                    </a>
+                </a>
 
             </div>
         </footer>

@@ -1,4 +1,6 @@
-import { postData } from "../../api/index";
+import { Dispatch } from "react";
+import { Action } from "redux";
+import { ThunkAction } from "redux-thunk";
 
 export const FETCH_POSTS_REQUEST = "FETCH_POSTS_REQUEST";
 export const FETCH_POSTS_FAILURE = "FETCH_POSTS_FAILURE";
@@ -14,25 +16,36 @@ export const SEND_POST_SUCCESS = "SEND_POST_SUCCESS";
 
 
 export interface Post {
-    data: {
-        id: number;
-        title: string;
-        body: string;
-    }
+    id: number;
+    title: string;
+    body: string;
 }
 
-export interface PostState {
-    posts: Post[];
+export interface Data {
+    data: { Post }
 }
+
+
+export interface PostState {
+    loading: boolean;
+    error: string;
+    posts: Array<Post>;
+    post: Post;
+}
+
 export type PostAction = {
     type: string,
-    payload?: Post[] | Post
+    posts?: Post[],
+    post?: Post,
+    err?: string,
 }
+
+type ThunkResult<R> = ThunkAction<R, PostState, undefined, PostAction>;
 
 export const addPosts = (posts: Post[]): PostAction => {
     const action: PostAction = {
         type: FETCH_POSTS_SUCCESS,
-        payload: posts
+        posts
     };
     return action;
 };
@@ -43,54 +56,55 @@ export const requestPosts = (): PostAction => {
     };
 };
 
-export const failurePosts = (err: any): PostAction => {
+export const failurePosts = (err: string): PostAction => {
     return {
         type: FETCH_POSTS_FAILURE,
-        payload: err,
+        err,
     };
 };
 
 export const addSinglePost = (post: Post): PostAction => {
     return {
         type: FETCH_SINGLE_POST_SUCCESS,
-        payload: post
+        post
     };
 };
 
-export const sendUserPost = (post: Post) => {
+export const sendUserPost = (): PostAction => {
     const action: PostAction = {
         type: SEND_POST_SUCCESS,
-        payload: post
     };
     return action;
 };
-export const failureUserPost = (err: any) => {
+
+export const failureUserPost = (err: string): PostAction => {
     const action: PostAction = {
         type: SEND_POST_SUCCESS,
-        payload: err
+        err
     };
     return action;
 };
-export const requestUserPost = (): PostAction => {
+
+export const requestUserPost = (): Action => {
 
     return { type: SEND_POST_SUCCESS };
 };
 
 
-export const requestSinglePost = (): PostAction => {
+export const requestSinglePost = (): Action => {
     return {
         type: FETCH_SINGLE_POST_REQUEST,
     };
 };
 
-export const failureSinglePost = (err: any): PostAction => {
+export const failureSinglePost = (err: string): PostAction => {
     return {
         type: FETCH_SINGLE_POST_FAILURE,
-        payload: err,
+        err,
     };
 };
 
-export const getPosts = (posts) => async (dispatch) => {
+export const getPosts = (posts: Post[]): ThunkResult<void> => async (dispatch: Dispatch<PostAction>) => {
     dispatch(requestPosts());
     try {
         dispatch(addPosts(posts));
@@ -99,7 +113,7 @@ export const getPosts = (posts) => async (dispatch) => {
     }
 };
 
-export const getSinglePost = (post) => async (dispatch) => {
+export const getSinglePost = (post: Post): ThunkResult<void> => async (dispatch: Dispatch<PostAction>) => {
     dispatch(requestSinglePost());
     try {
         dispatch(addSinglePost(post));
@@ -108,9 +122,9 @@ export const getSinglePost = (post) => async (dispatch) => {
     }
 };
 
-export const sendPost = (title: string, body: string) => async (dispatch) => {
+export const sendPost = (): ThunkResult<void> => async (dispatch: Dispatch<PostAction>) => {
     try {
-        dispatch(postData(title, body));
+        dispatch(sendUserPost());
     } catch (error) {
         dispatch(failureSinglePost(error));
     }

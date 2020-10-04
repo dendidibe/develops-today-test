@@ -1,14 +1,15 @@
 import { Provider } from "react-redux";
 import React from 'react';
 import store from "../store";
-import '../styles/globals.css';
+import { AppProps } from "next/app";
 import { createWrapper } from "next-redux-wrapper";
+import '../styles/globals.css';
 
-function MyApp(props) {
+function MyApp(props: AppProps) {
     const { Component, pageProps } = props;
     return (
         <Provider store={store}>
-            <Component {...pageProps}> </Component>
+            <Component {...pageProps} />
         </Provider>
     );
 }

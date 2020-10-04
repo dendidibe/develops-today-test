@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { useDispatch } from "react-redux";
+import { postData } from "../../api";
 import { Layout } from "../../components/layout/layout";
 import { sendPost } from "../../store/actions/actionTypes";
 import styles from "../../styles/newPost.module.css";
 
-const CreatePost = () => {
+const CreatePost = (): ReactElement => {
+
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
     const dispatch = useDispatch();
@@ -12,7 +14,8 @@ const CreatePost = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         if (title && body) {
-            dispatch(sendPost(title, body));
+            postData(title, body);
+            dispatch(sendPost());
         }
 
         setTitle("");

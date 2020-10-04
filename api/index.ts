@@ -1,13 +1,13 @@
 import axios from "axios";
-import { Post } from '../store/actions/actionTypes';
+import { Data, Post } from '../store/actions/actionTypes';
 
 axios.defaults.baseURL = "https://simple-blog-api.crew.red/";
 
-export function getAllPosts(): Promise<Post> {
+export function getAllPosts(): Promise<Data> {
     return axios.get("posts");
 }
 
-export function getEmbededPost(id: number): Promise<Post> {
+export function getEmbededPost(id: number): Promise<Data> {
     return axios.get(`posts/${id}`);
 }
 
