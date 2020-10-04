@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
-import { Layout } from "../components/layout/layout";
-import styles from '../styles/Error.module.css';
+import { Layout } from "components/layout/layout";
+import styles from 'styles/Error.module.css';
 
 function Error({ statusCode }: { statusCode: number }): ReactElement {
     return (
