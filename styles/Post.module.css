@@ -57,7 +57,20 @@
     align-items: center;
     grid-template-columns: 1fr 1fr 1fr;
 }
+.cardComments {
+    text-align: left;
+}
 
+.cardCommentsItem {
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in;
+    margin-top: 5px;
+    padding: 5px;
+}
+.cardCommentsItem:hover {
+    background-color: #c9c7c7;
+    
+}
 @media only screen and (max-width: 1130px) {
     .card {
         min-height: 27rem;

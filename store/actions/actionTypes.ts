@@ -19,6 +19,10 @@ export interface Post {
     id: number;
     title: string;
     body: string;
+    comments?: [{
+        body: string,
+        postId: number
+    }];
 }
 
 export interface Data {

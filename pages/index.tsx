@@ -31,6 +31,25 @@ const Home = ({
         }
         return res;
     };
+    const displayPosts = () => {
+        if (loading || !posts.length) {
+            return (
+                <h1 className={styles.noPost}>Haven&apos;t got posts yet...</h1>
+            );
+        }
+        return posts.map((post) => (
+            <div className={styles.card} key={post.id}>
+                <div className={styles.cardContent}>
+                    <Link href={`/posts/[postId]`} as={`/posts/${post.id}`}>
+                        <a className={styles.cardTitle}>{post.title}</a>
+                    </Link>
+                    <p className={styles.cardDescription}>
+                        {textSlicer(post.body, 500)}
+                    </p>
+                </div>
+            </div>
+        ));
+    };
 
     useEffect(() => {
         if (posts) {
@@ -42,32 +61,7 @@ const Home = ({
         <Layout>
             <div className={styles.home}>
                 <h1>Posts</h1>
-
-                <div className={styles.container}>
-                    {loading || !posts.length ? (
-                        <h1 className={styles.noPost}>
-                            Haven&apos;t got posts yet...
-                        </h1>
-                    ) : (
-                        posts.map((post) => (
-                            <div className={styles.card} key={post.id}>
-                                <div className={styles.cardContent}>
-                                    <Link
-                                        href={`/posts/[postId]`}
-                                        as={`/posts/${post.id}`}
-                                    >
-                                        <a className={styles.cardTitle}>
-                                            {post.title}
-                                        </a>
-                                    </Link>
-                                    <p className={styles.cardDescription}>
-                                        {textSlicer(post.body, 500)}
-                                    </p>
-                                </div>
-                            </div>
-                        ))
-                    )}
-                </div>
+                <div className={styles.container}>{displayPosts()}</div>
             </div>
         </Layout>
     );
