@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import React, { ReactElement } from 'react';
+import Link from "next/link";
+import React, { ReactElement } from "react";
 import { Layout } from "components/layout/layout";
-import styles from 'styles/Error.module.css';
+import styles from "styles/Error.module.css";
 
 function Error({ statusCode }: { statusCode: number }): ReactElement {
     return (
@@ -9,10 +9,11 @@ function Error({ statusCode }: { statusCode: number }): ReactElement {
             <h3>
                 {statusCode === 404
                     ? `Page not found`
-                    : 'An error occurred on client'}
+                    : "An error occurred on client"}
             </h3>
-            <Link href='/'><a className={styles.errorLink}>Go back home</a></Link>
-
+            <Link href="/">
+                <a className={styles.errorLink}>Go back home</a>
+            </Link>
         </Layout>
     );
 }

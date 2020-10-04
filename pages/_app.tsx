@@ -1,16 +1,15 @@
 import { Provider } from "react-redux";
-import React from 'react';
+import React from "react";
 import store from "../store";
 import { AppProps } from "next/app";
 import { createWrapper } from "next-redux-wrapper";
-import NextNprogress from 'nextjs-progressbar';
-import '../styles/globals.css';
+import NextNprogress from "nextjs-progressbar";
+import "../styles/globals.css";
 
 function MyApp(props: AppProps) {
     const { Component, pageProps } = props;
     return (
         <>
-
             <NextNprogress
                 color="#29D"
                 startPosition={0.3}
