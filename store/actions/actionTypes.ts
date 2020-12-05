@@ -15,7 +15,7 @@ export const SEND_POST_FAILURE = "SEND_POST_FAILURE";
 export const SEND_POST_SUCCESS = "SEND_POST_SUCCESS";
 
 
-export interface Post {
+export type Post = {
     id: number;
     title: string;
     body: string;
@@ -25,12 +25,12 @@ export interface Post {
     }];
 }
 
-export interface Data {
+export type Data = {
     data: { Post }
 }
 
 
-export interface PostState {
+export type PostState = {
     loading: boolean;
     error: string;
     posts: Array<Post>;
